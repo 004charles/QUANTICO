@@ -41,6 +41,7 @@
 - [x] Validar a atualização de identidade e legibilidade em desktop e mobile
 - [x] Definir um sistema visual corporativo original, sóbrio e elegante para a Quantico
 - [x] Redesenhar o shell de navegação, superfícies, botões, cartões e tipografia com padrão empresarial consistente
-- [ ] Refinar dashboard e gráficos para uma apresentação executiva mais discreta e hierárquica
-- [ ] Validar a experiência empresarial em desktop e mobile após o redesenho
-- [ ] Sincronizar a versão atual da Quantico Intelligence com o repositório GitHub 004charles/QUANTICO na branch main
+- [x] Refinar dashboard e gráficos para uma apresentação executiva mais discreta e hierárquica
+- [x] Validar a experiência empresarial em desktop e mobile após o redesenho
+- [ ] Enviar ao repositório GitHub 004charles/QUANTICO as alterações do redesenho corporativo posterior ao commit f8ab3bd
+- [ ] Confirmar que github/main contém o commit mais recente e que o diretório de trabalho está limpo
