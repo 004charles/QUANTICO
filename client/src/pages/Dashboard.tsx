@@ -33,27 +33,25 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-7 pb-6">
-      <section className="relative overflow-hidden rounded-[24px] bg-[#171f20] px-5 py-6 text-white sm:px-7 sm:py-7">
-        <div className="absolute -right-10 -top-16 size-48 rounded-full bg-[#b6d6fa] opacity-25 blur-[1px]" />
-        <div className="absolute bottom-[-70px] right-[22%] size-36 rotate-45 rounded-[28px] bg-[#f5cbd5] opacity-20" />
+      <section className="relative overflow-hidden rounded-[10px] border border-[#dce5ee] border-l-4 border-l-[#0b62b4] bg-white px-5 py-6 sm:px-7 sm:py-7">
         <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <div className="mb-4 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#dce9ea]">
-                <span className="size-1.5 rounded-full bg-[#9cd2bc]" />
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#edf5fd] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#0b62b4]">
+                <span className="size-1.5 rounded-full bg-[#0b62b4]" />
                 Inteligência atualizada
               </span>
-              <span className="text-xs text-[#aebcbc]">27 de agosto de 2026</span>
+              <span className="text-xs text-[#687582]">27 de agosto de 2026</span>
             </div>
-            <h1 className="max-w-xl text-[28px] font-extrabold leading-[1.04] tracking-[-0.065em] sm:text-[38px]">
+            <h1 className="max-w-xl text-[28px] font-bold leading-[1.12] tracking-[-0.05em] text-[#242424] sm:text-[36px]">
               Veja o que está a acontecer no seu negócio.
             </h1>
-            <p className="mt-4 max-w-xl text-sm leading-6 text-[#c2ced0]">
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#5e6873]">
               Acompanhe a receita, as vendas e os clientes. Cada informação abaixo explica o desempenho e a próxima decisão recomendada.
             </p>
           </div>
-          <button onClick={() => setLocation("/ask-quantico")} className="quantico-cta group relative inline-flex items-center justify-center gap-2 rounded-xl bg-[#dbeafe] px-4 py-3 text-sm font-bold text-[#182325]">
-            <Sparkles className="size-4 text-[#3977b9]" />
+          <button onClick={() => setLocation("/ask-quantico")} className="quantico-dark-button group relative inline-flex items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-semibold">
+            <Sparkles className="size-4" />
             Pergunte ao seu negócio
             <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </button>

@@ -36,9 +36,9 @@ function NavSection({ title, items, location, setLocation }: { title?: string; i
               isActive={active}
               onClick={() => setLocation(item.path)}
               tooltip={item.label}
-              className={`h-10 rounded-lg px-2.5 text-[#c4dbf1] transition-all hover:bg-white/10 hover:text-white data-[active=true]:bg-white data-[active=true]:font-semibold data-[active=true]:text-[#0d4e8c] ${item.highlight && !active ? "bg-[#1b5b97] text-white" : ""}`}
+              className={`h-10 rounded-md px-2.5 text-[#d0d7de] transition-all hover:bg-white/10 hover:text-white data-[active=true]:bg-[#0b62b4] data-[active=true]:font-semibold data-[active=true]:text-white ${item.highlight && !active ? "bg-white/10 text-white" : ""}`}
             >
-              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#d8ebff]" : ""}`} strokeWidth={active ? 2.2 : 1.9} />
+              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#9fc5eb]" : ""}`} strokeWidth={active ? 2.2 : 1.9} />
               <span className="truncate text-[13px]">{item.label}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -61,8 +61,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <SidebarProvider defaultOpen={!isMobile}>
-      <Sidebar collapsible="icon" className="border-0 bg-[#0a3158] text-[#dcecff]">
-        <SidebarHeader className="h-[78px] justify-center border-b border-white/15 px-3">
+      <Sidebar collapsible="icon" className="border-0 bg-[#252b32] text-[#dcecff]">
+        <SidebarHeader className="h-[64px] justify-center border-b border-white/15 px-3">
           <QuanticoBrand className="px-1 text-white" />
         </SidebarHeader>
         <SidebarContent className="py-3">
@@ -86,15 +86,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </DropdownMenu>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset className="min-h-screen bg-[#f5f9ff]">
-        <header className="sticky top-0 z-20 flex h-[78px] items-center justify-between border-b border-[#dce9f7] bg-[#f5f9ff]/90 px-4 backdrop-blur-md sm:px-7">
+      <SidebarInset className="min-h-screen bg-[#f8f9fa]">
+        <header className="sticky top-0 z-20 flex h-[64px] items-center justify-between border-b border-[#e2e6ea] bg-white/95 px-4 backdrop-blur-md sm:px-7">
           <div className="flex min-w-0 items-center gap-3">
             <SidebarTrigger className="size-9 rounded-lg text-[#405052] hover:bg-white hover:text-[#111718]" aria-label="Abrir navegação"><Menu className="size-4" /></SidebarTrigger>
             <div className="hidden h-5 w-px bg-[#d9e0e0] sm:block" />
             <button onClick={() => setLocation("/settings")} className="hidden min-w-0 items-center gap-2 sm:flex"><span className="max-w-[220px] truncate text-sm font-bold tracking-[-0.04em] text-[#1d292a]">{workspaceName}</span><ChevronDown className="size-3.5 shrink-0 text-[#7f8e90]" /></button>
             {isMobile ? <QuanticoBrand compact className="text-[#172122]" /> : null}
           </div>
-          <div className="flex items-center gap-2.5"><span className="hidden rounded-full border border-[#dce5e5] bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#6b7a7b] lg:inline-flex">Executive workspace</span><button className="relative flex size-9 items-center justify-center rounded-lg border border-[#dce4e4] bg-white text-[#526163] transition-colors hover:bg-[#edf5ff] hover:text-[#3977b9]" aria-label="Notificações"><Bell className="size-4" /><span className="absolute right-2 top-2 size-1.5 rounded-full bg-[#d78494]" /></button></div>
+          <div className="flex items-center gap-2.5"><span className="hidden rounded-md border border-[#e1e5e9] bg-[#f7f9fb] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#637181] lg:inline-flex">Área de trabalho</span><button className="relative flex size-9 items-center justify-center rounded-md border border-[#dce3e9] bg-white text-[#526163] transition-colors hover:bg-[#f2f7fc] hover:text-[#0b62b4]" aria-label="Notificações"><Bell className="size-4" /><span className="absolute right-2 top-2 size-1.5 rounded-full bg-[#0b62b4]" /></button></div>
         </header>
         <main className="mx-auto w-full max-w-[1660px] flex-1 px-4 py-6 sm:px-7 sm:py-8">{children}</main>
       </SidebarInset>

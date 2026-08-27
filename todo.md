@@ -39,3 +39,8 @@
 - [x] Reescrever termos técnicos para linguagem executiva simples e orientada à decisão
 - [x] Redeselhar gráficos e cartões para exibir valores, períodos, tendências e interpretação com clareza
 - [x] Validar a atualização de identidade e legibilidade em desktop e mobile
+- [x] Definir um sistema visual corporativo original, sóbrio e elegante para a Quantico
+- [x] Redesenhar o shell de navegação, superfícies, botões, cartões e tipografia com padrão empresarial consistente
+- [ ] Refinar dashboard e gráficos para uma apresentação executiva mais discreta e hierárquica
+- [ ] Validar a experiência empresarial em desktop e mobile após o redesenho
+- [ ] Sincronizar a versão atual da Quantico Intelligence com o repositório GitHub 004charles/QUANTICO na branch main
