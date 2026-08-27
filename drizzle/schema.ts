@@ -94,10 +94,21 @@ export const reports = mysqlTable("reports", {
   category: mysqlEnum("category", ["executive", "financial", "commercial"]).notNull(),
   cadence: mysqlEnum("cadence", ["daily", "weekly", "monthly", "manual"]).default("manual").notNull(),
   configuration: json("configuration"),
+  scheduleCronTaskUid: varchar("scheduleCronTaskUid", { length: 65 }),
+  lastGeneratedAt: timestamp("lastGeneratedAt"),
   isActive: int("isActive").default(1).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-}, (table) => [index("reports_organization_idx").on(table.organizationId)]);
+}, (table) => [index("reports_organization_idx").on(table.organizationId), index("reports_schedule_cron_task_uid_idx").on(table.scheduleCronTaskUid)]);
+
+export const reportArtifacts = mysqlTable("report_artifacts", {
+  id: int("id").autoincrement().primaryKey(),
+  organizationId: int("organizationId").notNull(),
+  reportId: int("reportId").notNull(),
+  fileKey: varchar("fileKey", { length: 512 }).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+}, (table) => [index("report_artifacts_organization_report_idx").on(table.organizationId, table.reportId)]);
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;

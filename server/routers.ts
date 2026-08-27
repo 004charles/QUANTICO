@@ -6,7 +6,11 @@ import { assessAiInputSafety } from "./ai/input-guard";
 import { buildAnalyticalEnhancements } from "./ai/analytical-context";
 import { importDataset, listImportedDatasets } from "./data-imports";
 import { createReport, listReports } from "./reports";
+import { generateReportArtifact, getReportForOrganization, listReportArtifacts, persistReportSchedule } from "./reports";
 import { detectLatestMetricAnomaly } from "./anomaly-detection";
+import { cronForCadence } from "./report-scheduler";
+import { createHeartbeatJob } from "./_core/heartbeat";
+import { parse as parseCookie } from "cookie";
 import { getCurrentOrganization, writeAnalyticalQueryAudit } from "./db";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
@@ -155,6 +159,43 @@ export const appRouter = router({
         const organization = await getCurrentOrganization(ctx.user);
         if (!organization.id) throw new Error("Inicie sessão para criar relatórios na sua organização.");
         return createReport({ organizationId: organization.id, ...input });
+      }),
+    schedule: protectedProcedure
+      .input(z.object({ reportId: z.number().int().positive() }))
+      .mutation(async ({ ctx, input }) => {
+        const organization = await getCurrentOrganization(ctx.user);
+        if (!organization.id) throw new Error("Inicie sessão para agendar relatórios.");
+        const report = await getReportForOrganization(input.reportId, organization.id);
+        if (!report) throw new Error("Relatório não encontrado neste workspace.");
+        if (report.scheduleCronTaskUid) return { taskUid: report.scheduleCronTaskUid, alreadyScheduled: true };
+        const sessionToken = parseCookie(ctx.req.headers.cookie ?? "")[COOKIE_NAME] ?? "";
+        const job = await createHeartbeatJob({
+          name: `quantico-report-${organization.id}-${report.id}`,
+          cron: cronForCadence(report.cadence),
+          path: "/api/scheduled/generate-report",
+          payload: { reportId: report.id },
+          description: `Quantico Intelligence: ${report.name}`,
+        }, sessionToken);
+        await persistReportSchedule(report.id, organization.id, job.taskUid);
+        return { taskUid: job.taskUid, nextExecutionAt: job.nextExecutionAt, alreadyScheduled: false };
+      }),
+    generate: protectedProcedure
+      .input(z.object({ reportId: z.number().int().positive() }))
+      .mutation(async ({ ctx, input }) => {
+        const organization = await getCurrentOrganization(ctx.user);
+        if (!organization.id) throw new Error("Inicie sessão para gerar relatórios.");
+        const report = await getReportForOrganization(input.reportId, organization.id);
+        if (!report) throw new Error("Relatório não encontrado neste workspace.");
+        return generateReportArtifact(report, organization.name);
+      }),
+    artifacts: protectedProcedure
+      .input(z.object({ reportId: z.number().int().positive() }))
+      .query(async ({ ctx, input }) => {
+        const organization = await getCurrentOrganization(ctx.user);
+        if (!organization.id) return [];
+        const report = await getReportForOrganization(input.reportId, organization.id);
+        if (!report) return [];
+        return listReportArtifacts(report.id, organization.id);
       }),
   }),
 });

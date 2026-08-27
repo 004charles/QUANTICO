@@ -84,4 +84,11 @@ describe("ai.ask", () => {
     expect(mocks.importDataset).toHaveBeenCalledWith(expect.objectContaining({ organizationId: 7 }));
     expect(mocks.createReport).toHaveBeenCalledWith(expect.objectContaining({ organizationId: 7 }));
   });
+
+  it("lists imported sources only through the current organization scope", async () => {
+    mocks.listImportedDatasets.mockResolvedValue([{ id: 3, organizationId: 7, fileName: "receita.csv" }]);
+    const result = await caller().data.listImports();
+    expect(result).toHaveLength(1);
+    expect(mocks.listImportedDatasets).toHaveBeenCalledWith(7);
+  });
 });

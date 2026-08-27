@@ -25,7 +25,7 @@
 - [ ] Demonstrar sucesso do executor analítico com dados reais importados ou um dataset autorizado pela organização
 - [ ] Exibir estados explícitos de vazio e erro no dashboard, Sales e Customer Intelligence
 - [ ] Conectar os blocos restantes de Sales e Customer Intelligence a APIs por tenant
-- [ ] Adicionar testes das APIs principais de importação, relatórios, métricas e resumo executivo
+- [x] Adicionar testes das APIs principais de importação, relatórios, métricas e resumo executivo
 - [x] Renderizar visualizações no Ask Quantico com base em uma especificação estruturada de gráfico retornada pelo backend
 - [x] Suportar comparações analíticas entre períodos no fluxo do AI Business Analyst
 - [x] Cobrir a rota de IA em cenários de sucesso, bloqueio de segurança, ausência de dados e resposta com visualização
