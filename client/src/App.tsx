@@ -42,6 +42,7 @@ function Router() {
         <Route path="/actions" component={ActionCenter} />
         <Route path="/access" component={WorkspaceAccess} />
         <Route path="/reports" component={Reports} />
+        <Route path="/onboarding" component={WorkspaceSetup} />
         <Route path="/settings" component={WorkspaceSetup} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
