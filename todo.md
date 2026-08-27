@@ -34,3 +34,8 @@
 - [x] Corrigir a falha do Ask Quantico ao concluir análises com métricas conectadas
 - [x] Validar o fluxo Ask Quantico com resposta, comparação e visualização após a correção
 - [x] Identificar e substituir o modelo Groq indisponível por um modelo suportado pela conta
+- [x] Remover o logo atual e utilizar wordmark tipográfico temporário
+- [x] Aplicar identidade visual provisória azul e branca em toda a plataforma
+- [x] Reescrever termos técnicos para linguagem executiva simples e orientada à decisão
+- [x] Redeselhar gráficos e cartões para exibir valores, períodos, tendências e interpretação com clareza
+- [x] Validar a atualização de identidade e legibilidade em desktop e mobile

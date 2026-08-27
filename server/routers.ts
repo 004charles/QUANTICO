@@ -77,6 +77,7 @@ export const appRouter = router({
           question: "Produza um resumo executivo conciso, destacando tendência, principal risco e a próxima melhor ação.",
           organizationName: organization.name,
           industry: organization.industry,
+          currency: organization.currency,
           metricContext: JSON.stringify({ revenue: revenue.points, sales: sales.points }),
         });
         return { state: "ready" as const, summary: answer.answer, insights: answer.insights, recommendation: answer.recommendations[0] };
@@ -128,6 +129,7 @@ export const appRouter = router({
           question: input.question,
           organizationName: organization.name,
           industry: organization.industry,
+          currency: organization.currency,
           metricContext,
         });
         return { mode: "connected" as const, ...response, ...enhancements };

@@ -1,4 +1,3 @@
-import { DemoBadge } from "@/components/DemoBadge";
 import { Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -19,7 +18,6 @@ export function PageHeader({ eyebrow, title, description, askCta = true }: PageH
         <p className="mt-3 text-sm leading-6 text-[#6b797a]">{description}</p>
       </div>
       <div className="flex shrink-0 flex-wrap items-center gap-2">
-        <DemoBadge />
         {askCta ? <button onClick={() => setLocation("/ask-quantico")} className="quantico-dark-button inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-xs font-bold"><Sparkles className="size-3.5" />Pergunte ao seu negócio</button> : null}
       </div>
     </header>

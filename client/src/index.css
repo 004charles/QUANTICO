@@ -32,36 +32,36 @@
 }
 
 :root {
-  --background: oklch(0.962 0.006 196);
-  --foreground: oklch(0.18 0.013 190);
-  --card: oklch(0.995 0.002 196);
-  --card-foreground: oklch(0.18 0.013 190);
-  --popover: oklch(0.995 0.002 196);
-  --popover-foreground: oklch(0.18 0.013 190);
-  --primary: oklch(0.49 0.095 245);
-  --primary-foreground: oklch(0.98 0.004 196);
-  --secondary: oklch(0.93 0.009 196);
-  --secondary-foreground: oklch(0.22 0.015 190);
-  --muted: oklch(0.946 0.008 196);
-  --muted-foreground: oklch(0.47 0.014 190);
-  --accent: oklch(0.93 0.025 245);
-  --accent-foreground: oklch(0.25 0.045 245);
+  --background: oklch(0.978 0.004 250);
+  --foreground: oklch(0.22 0.04 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.04 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 255);
+  --primary: oklch(0.46 0.14 250);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.018 250);
+  --secondary-foreground: oklch(0.25 0.07 250);
+  --muted: oklch(0.96 0.01 250);
+  --muted-foreground: oklch(0.49 0.025 250);
+  --accent: oklch(0.92 0.045 250);
+  --accent-foreground: oklch(0.27 0.09 250);
   --destructive: oklch(0.58 0.18 20);
-  --border: oklch(0.9 0.009 196);
-  --input: oklch(0.9 0.009 196);
-  --ring: oklch(0.59 0.093 245);
+  --border: oklch(0.9 0.018 250);
+  --input: oklch(0.9 0.018 250);
+  --ring: oklch(0.59 0.14 250);
   --radius: 0.85rem;
 }
 
 * { border-color: var(--border); }
 
-html { background: #f1f4f5; }
+html { background: #f5f9ff; }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #f1f4f5;
-  color: #172122;
+  background: #f5f9ff;
+  color: #102a43;
   font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -72,28 +72,28 @@ button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 
 .quantico-card {
-  border: 1px solid #e0e7e7;
+  border: 1px solid #dce9f7;
   border-radius: 18px;
   background: rgba(255,255,255,0.9);
-  box-shadow: 0 10px 30px rgba(38, 58, 58, 0.035);
+  box-shadow: 0 12px 32px rgba(26, 83, 139, 0.06);
 }
 
 .quantico-control {
-  border: 1px solid #dce4e4;
+  border: 1px solid #d4e4f5;
   background: #fff;
-  color: #526163;
+  color: #34516d;
   transition: background-color 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.quantico-control:hover { border-color: #bfd3d3; background: #f9fbfb; }
-.quantico-link { color: #3d779f; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
-.quantico-link:hover { color: #1f587e; }
-.quantico-dark-button { background: #172122; color: white; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
-.quantico-dark-button:hover { background: #273637; }
+.quantico-control:hover { border-color: #a9cae9; background: #f7fbff; }
+.quantico-link { color: #0f5fa8; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.quantico-link:hover { color: #0b447d; }
+.quantico-dark-button { background: #0f5fa8; color: white; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.quantico-dark-button:hover { background: #0b4d91; }
 .quantico-cta { transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
-.quantico-cta:hover { background: #cae2fb; }
+.quantico-cta:hover { background: #d9ebff; }
 .quantico-cta:active, .quantico-dark-button:active { transform: scale(0.97); }
 
 @media (prefers-reduced-motion: no-preference) {
   .quantico-card { transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1); }
-  .quantico-card:hover { box-shadow: 0 14px 36px rgba(38, 58, 58, 0.06); }
+  .quantico-card:hover { box-shadow: 0 16px 38px rgba(26, 83, 139, 0.1); }
 }

@@ -15,10 +15,10 @@ const channels = [
 ];
 
 const performers = [
-  { name: "Ana dos Santos", segment: "Enterprise", revenue: "6,8M Kz", goal: 121, tone: "#dbeafe" },
-  { name: "Mário Lopes", segment: "Mid-market", revenue: "5,4M Kz", goal: 109, tone: "#f8e2e7" },
-  { name: "Joana Manuel", segment: "Enterprise", revenue: "4,9M Kz", goal: 105, tone: "#dfeee9" },
-  { name: "Paulo Vicente", segment: "SMB", revenue: "3,7M Kz", goal: 96, tone: "#e6ebeb" },
+  { name: "Ana dos Santos", segment: "Grandes empresas", revenue: "6,8M Kz", goal: 121, tone: "#dceeff" },
+  { name: "Mário Lopes", segment: "Médias empresas", revenue: "5,4M Kz", goal: 109, tone: "#e7f3ff" },
+  { name: "Joana Manuel", segment: "Grandes empresas", revenue: "4,9M Kz", goal: 105, tone: "#edf6ff" },
+  { name: "Paulo Vicente", segment: "Pequenas empresas", revenue: "3,7M Kz", goal: 96, tone: "#e6f0fa" },
 ];
 
 export default function SalesIntelligence() {
@@ -28,21 +28,21 @@ export default function SalesIntelligence() {
   const salesDetail = liveSales ? "última métrica conectada" : "vs. mês anterior";
   return (
     <div className="space-y-7 pb-6">
-      <PageHeader eyebrow="Inteligência comercial" title="Vendas com contexto, não apenas volume." description="Leia o avanço do funil, a eficiência dos canais e a qualidade do desempenho comercial em uma visão única." />
+      <PageHeader eyebrow="Vendas" title="Acompanhe onde as vendas avançam e onde estão a parar." description="Veja quantas oportunidades existem em cada etapa, quais canais vendem mais e quem está mais perto da meta." />
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Pipeline aberto" value="81,6M Kz" change="15,8%" detail="vs. mês anterior" icon={BadgeDollarSign} accent="blue" />
-        <MetricCard label="Taxa de conversão" value="16,8%" change="1,9 p.p." detail="vs. mês anterior" icon={Goal} accent="mint" />
-        <MetricCard label="Vendas fechadas" value={salesVolume} change="9,3%" detail={salesDetail} icon={ClipboardCheck} accent="blush" />
-        <MetricCard label="Ciclo médio" value="18 dias" change="2,4 dias" detail="mais eficiente" icon={Activity} accent="ink" />
+        <MetricCard label="Valor de negócios em aberto" value="81,6M Kz" change="15,8%" detail="comparado ao mês anterior" icon={BadgeDollarSign} accent="blue" />
+        <MetricCard label="Oportunidades que viraram venda" value="16,8%" change="1,9 p.p." detail="comparado ao mês anterior" icon={Goal} accent="mint" />
+        <MetricCard label="Vendas concluídas" value={salesVolume} change="9,3%" detail={salesDetail} icon={ClipboardCheck} accent="blush" />
+        <MetricCard label="Tempo médio para vender" value="18 dias" change="2,4 dias" detail="mais rápido que antes" icon={Activity} accent="ink" />
       </section>
       <MetricConnectionNotice state={salesQuery.data?.state} isLoading={salesQuery.isLoading} isError={salesQuery.isError} />
       <section className="grid gap-5 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
         <article className="quantico-card p-5 sm:p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"><div><p className="text-xs font-medium text-[#6d7b7c]">Funil comercial</p><h2 className="mt-2 text-xl font-extrabold tracking-[-0.05em] text-[#172122]">17% dos leads chegam à venda</h2></div><DemoBadge /></div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"><div><p className="text-xs font-semibold text-[#54718e]">Caminho até à venda</p><h2 className="mt-2 text-xl font-extrabold tracking-[-0.05em] text-[#102a43]">De cada 100 contactos interessados, 17 tornam-se clientes.</h2><p className="mt-2 text-xs leading-5 text-[#688099]">As barras mostram a percentagem que avança em cada etapa. Quanto menor a barra, maior a necessidade de atenção.</p></div><DemoBadge /></div>
           <div className="mt-8 space-y-3">
-            {funnelData.map((stage, index) => <div key={stage.stage} className="grid grid-cols-[112px_minmax(0,1fr)_52px] items-center gap-3"><div className="flex items-center gap-2"><span className="font-mono text-[10px] text-[#839092]">0{index + 1}</span><span className="text-xs font-semibold text-[#344142]">{stage.stage}</span></div><div className="h-8 overflow-hidden rounded-lg bg-[#eff2f2]"><div className="flex h-full items-center rounded-lg px-3" style={{ width: `${stage.value}%`, background: index === 4 ? "#8fbfae" : `rgba(113, 163, 211, ${0.8 - index * 0.1})` }}><span className="hidden text-[10px] font-bold text-white sm:inline">{stage.value}%</span></div></div><span className="text-right text-xs font-bold tracking-[-0.03em] text-[#253132]">{stage.label}</span></div>)}
+            {funnelData.map((stage, index) => <div key={stage.stage} className="grid grid-cols-[112px_minmax(0,1fr)_52px] items-center gap-3"><div className="flex items-center gap-2"><span className="font-mono text-[10px] text-[#5f83a7]">0{index + 1}</span><span className="text-xs font-semibold text-[#24405b]">{stage.stage}</span></div><div className="h-8 overflow-hidden rounded-lg bg-[#edf5fc]"><div className="flex h-full items-center rounded-lg px-3" style={{ width: `${stage.value}%`, background: `rgba(15, 105, 179, ${0.88 - index * 0.1})` }}><span className="hidden text-[10px] font-bold text-white sm:inline">{stage.value}%</span></div></div><span className="text-right text-xs font-bold tracking-[-0.03em] text-[#183b5d]">{stage.label}</span></div>)}
           </div>
-          <div className="mt-7 grid gap-3 border-t border-[#e6ecec] pt-5 sm:grid-cols-3"><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#899697]">Gargalo</p><p className="mt-1 text-sm font-bold text-[#202c2d]">Proposta → venda</p></div><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#899697]">Perda estimada</p><p className="mt-1 text-sm font-bold text-[#b16071]">9,8M Kz</p></div><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#899697]">Sinal recomendado</p><p className="mt-1 text-sm font-bold text-[#387163]">Rever propostas &lt; 7 dias</p></div></div>
+          <div className="mt-7 grid gap-3 border-t border-[#dfeaf5] pt-5 sm:grid-cols-3"><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#6682a0]">Onde as vendas param</p><p className="mt-1 text-sm font-bold text-[#102a43]">Proposta → venda</p></div><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#6682a0]">Valor em risco</p><p className="mt-1 text-sm font-bold text-[#176eae]">9,8M Kz</p></div><div><p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#6682a0]">Próxima ação</p><p className="mt-1 text-sm font-bold text-[#176eae]">Rever propostas com mais de 7 dias</p></div></div>
         </article>
         <article className="quantico-card p-5 sm:p-6"><SectionTitle eyebrow="Eficiência" title="Canais de aquisição" /><div className="mt-6 space-y-5">{channels.map((channel) => <div key={channel.name}><div className="flex items-center justify-between gap-4"><div><p className="text-sm font-bold tracking-[-0.03em] text-[#283536]">{channel.name}</p><p className="mt-0.5 text-xs text-[#819092]">Conversão {channel.conversion}</p></div><div className="text-right"><p className="text-sm font-bold tracking-[-0.03em] text-[#273334]">{channel.revenue}</p><p className="mt-0.5 text-xs font-semibold text-[#4b836f]">{channel.growth}</p></div></div><div className="mt-2.5 h-1.5 rounded-full bg-[#edf1f1]"><div className="h-full rounded-full bg-[#78a7d4]" style={{ width: `${channel.width}%` }} /></div></div>)}</div></article>
       </section>

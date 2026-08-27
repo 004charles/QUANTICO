@@ -8,18 +8,18 @@ export const revenueTrend = [
 ];
 
 export const funnelData = [
-  { stage: "Leads", value: 100, label: "4.820" },
-  { stage: "Qualificados", value: 71, label: "3.422" },
-  { stage: "Oportunidades", value: 46, label: "2.216" },
+  { stage: "Contactos", value: 100, label: "4.820" },
+  { stage: "Com potencial", value: 71, label: "3.422" },
+  { stage: "Em negociação", value: 46, label: "2.216" },
   { stage: "Propostas", value: 28, label: "1.352" },
   { stage: "Vendas", value: 17, label: "812" },
 ];
 
 export const topRegions = [
-  { name: "Luanda", value: "18,4M Kz", share: 38, tone: "#88add6" },
-  { name: "Benguela", value: "10,9M Kz", share: 23, tone: "#d7a1ad" },
-  { name: "Huíla", value: "7,6M Kz", share: 16, tone: "#94c5b4" },
-  { name: "Outras regiões", value: "11,3M Kz", share: 23, tone: "#b8c4c6" },
+  { name: "Luanda", value: "18,4M Kz", share: 38, tone: "#176fb6" },
+  { name: "Benguela", value: "10,8M Kz", share: 23, tone: "#4d93cb" },
+  { name: "Huíla", value: "7,6M Kz", share: 16, tone: "#80b9e1" },
+  { name: "Outras regiões", value: "11,3M Kz", share: 23, tone: "#b4d5ef" },
 ];
 
 export const executiveInsights = [
@@ -31,11 +31,11 @@ export const executiveInsights = [
   {
     title: "23 contas de alto valor requerem atenção",
     description: "Clientes VIP reduziram a frequência de compra nos últimos 45 dias. Potencial de recuperação: 4,2M Kz.",
-    tone: "blush",
+    tone: "blue",
   },
   {
     title: "Expansão de margem em categorias premium",
     description: "Três categorias combinam crescimento acima da média com margem superior a 35%.",
-    tone: "mint",
+    tone: "blue",
   },
 ];

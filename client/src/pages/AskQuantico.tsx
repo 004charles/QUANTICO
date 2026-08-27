@@ -33,10 +33,10 @@ export default function AskQuantico() {
       <section className="quantico-card overflow-hidden">
         <header className="flex flex-col gap-4 border-b border-[#e4eaea] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-xl bg-[#dbeafe] text-[#3977b9]"><Sparkles className="size-[18px]" /></div>
-            <div><p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#839092]">AI Business Analyst</p><h1 className="mt-1 text-xl font-extrabold tracking-[-0.045em] text-[#172122]">Pergunte ao seu negócio</h1></div>
+            <div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f1ff] text-[#0f67b5]"><Sparkles className="size-[18px]" /></div>
+            <div><p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#4778a5]">Assistente de análise</p><h1 className="mt-1 text-xl font-extrabold tracking-[-0.045em] text-[#102a43]">Pergunte ao seu negócio</h1></div>
           </div>
-          <DemoBadge />
+          <span className="rounded-full bg-[#e8f3ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-[#246ba9]">Respostas baseadas nos seus dados</span>
         </header>
         <AIChatBox
           messages={messages}
@@ -51,8 +51,8 @@ export default function AskQuantico() {
       </section>
       <aside className="space-y-5">
         {visualization ? <AiVisualization visualization={visualization} /> : null}
-        <section className="quantico-card p-5"><div className="flex size-10 items-center justify-center rounded-xl bg-[#eff7f2] text-[#548571]"><ShieldCheck className="size-[19px]" /></div><h2 className="mt-5 text-base font-bold tracking-[-0.04em] text-[#192526]">Consulta protegida</h2><p className="mt-2 text-sm leading-6 text-[#697778]">A interface usa apenas métricas aprovadas e operações analíticas de leitura. Chaves e dados de conexão não chegam ao navegador.</p></section>
-        <section className="quantico-card p-5"><div className="flex size-10 items-center justify-center rounded-xl bg-[#f8e2e7] text-[#a86172]"><BarChart3 className="size-[19px]" /></div><h2 className="mt-5 text-base font-bold tracking-[-0.04em] text-[#192526]">Respostas acionáveis</h2><p className="mt-2 text-sm leading-6 text-[#697778]">O Quantico AI organiza resposta, evidências e recomendações. Sem fonte conectada, ele solicita dados antes de concluir.</p></section>
+        <section className="quantico-card p-5"><div className="flex size-10 items-center justify-center rounded-xl bg-[#e9f4ff] text-[#256eae]"><ShieldCheck className="size-[19px]" /></div><h2 className="mt-5 text-base font-bold tracking-[-0.04em] text-[#102a43]">Dados protegidos</h2><p className="mt-2 text-sm leading-6 text-[#5f7890]">A análise consulta apenas os dados importados e permitidos. As chaves e os dados de ligação não chegam ao navegador.</p></section>
+        <section className="quantico-card p-5"><div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f1ff] text-[#0f67b5]"><BarChart3 className="size-[19px]" /></div><h2 className="mt-5 text-base font-bold tracking-[-0.04em] text-[#102a43]">O que fazer a seguir</h2><p className="mt-2 text-sm leading-6 text-[#5f7890]">O Quantico explica o resultado, mostra o gráfico e sugere uma ação. Se faltarem dados, ele indica exatamente o que importar.</p></section>
       </aside>
     </div>
   );

@@ -10,16 +10,16 @@ import { BarChart3, Bell, Bot, Building2, ChevronDown, CircleGauge, Database, Fi
 import { useLocation } from "wouter";
 
 const primaryItems = [
-  { icon: LayoutDashboard, label: "Visão geral", path: "/" },
+  { icon: LayoutDashboard, label: "Resumo do negócio", path: "/" },
   { icon: Sparkles, label: "Pergunte ao seu negócio", path: "/ask-quantico", highlight: true },
-  { icon: Target, label: "Sales Intelligence", path: "/sales" },
-  { icon: UsersRound, label: "Customer Intelligence", path: "/customers" },
-  { icon: CircleGauge, label: "Oportunidades", path: "/growth" },
-  { icon: Gauge, label: "Previsões", path: "/forecast" },
+  { icon: Target, label: "Vendas", path: "/sales" },
+  { icon: UsersRound, label: "Clientes", path: "/customers" },
+  { icon: CircleGauge, label: "Oportunidades de receita", path: "/growth" },
+  { icon: Gauge, label: "Previsão de vendas", path: "/forecast" },
 ];
 
 const managementItems = [
-  { icon: Database, label: "Central de dados", path: "/data" },
+  { icon: Database, label: "Dados e importações", path: "/data" },
   { icon: FileText, label: "Relatórios", path: "/reports" },
   { icon: Settings2, label: "Configurações", path: "/settings" },
 ];
@@ -36,9 +36,9 @@ function NavSection({ title, items, location, setLocation }: { title?: string; i
               isActive={active}
               onClick={() => setLocation(item.path)}
               tooltip={item.label}
-              className={`h-10 rounded-lg px-2.5 text-[#b8c5c6] transition-all hover:bg-white/7 hover:text-white data-[active=true]:bg-[#edf5ff] data-[active=true]:font-semibold data-[active=true]:text-[#1c3032] ${item.highlight && !active ? "bg-[#253234] text-[#e5f3f5]" : ""}`}
+              className={`h-10 rounded-lg px-2.5 text-[#c4dbf1] transition-all hover:bg-white/10 hover:text-white data-[active=true]:bg-white data-[active=true]:font-semibold data-[active=true]:text-[#0d4e8c] ${item.highlight && !active ? "bg-[#1b5b97] text-white" : ""}`}
             >
-              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#a8cbef]" : ""}`} strokeWidth={active ? 2.2 : 1.9} />
+              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#d8ebff]" : ""}`} strokeWidth={active ? 2.2 : 1.9} />
               <span className="truncate text-[13px]">{item.label}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -61,21 +61,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <SidebarProvider defaultOpen={!isMobile}>
-      <Sidebar collapsible="icon" className="border-0 bg-[#131a1b] text-[#dce8e8]">
-        <SidebarHeader className="h-[78px] justify-center border-b border-white/[0.07] px-3">
+      <Sidebar collapsible="icon" className="border-0 bg-[#0a3158] text-[#dcecff]">
+        <SidebarHeader className="h-[78px] justify-center border-b border-white/15 px-3">
           <QuanticoBrand className="px-1 text-white" />
         </SidebarHeader>
         <SidebarContent className="py-3">
           <NavSection items={primaryItems} location={location} setLocation={setLocation} />
           <NavSection title="Gestão" items={managementItems} location={location} setLocation={setLocation} />
         </SidebarContent>
-        <SidebarFooter className="border-t border-white/[0.07] p-3">
+        <SidebarFooter className="border-t border-white/15 p-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex w-full items-center gap-2.5 rounded-xl p-1.5 text-left transition-colors hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9dc5ee] group-data-[collapsible=icon]:justify-center">
-                <Avatar className="size-8 shrink-0 border border-white/10"><AvatarFallback className="bg-[#dbeafe] text-[10px] font-bold text-[#315d8d]">{initials}</AvatarFallback></Avatar>
-                <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold text-white">{displayName}</p><p className="mt-0.5 truncate text-[10px] text-[#839395]">{workspaceDetail}</p></div>
-                <ChevronDown className="size-3.5 text-[#849496] group-data-[collapsible=icon]:hidden" />
+              <button className="flex w-full items-center gap-2.5 rounded-xl p-1.5 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9dc5ee] group-data-[collapsible=icon]:justify-center">
+                <Avatar className="size-8 shrink-0 border border-white/15"><AvatarFallback className="bg-[#dceeff] text-[10px] font-bold text-[#0f5fa8]">{initials}</AvatarFallback></Avatar>
+                <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold text-white">{displayName}</p><p className="mt-0.5 truncate text-[10px] text-[#a8c6e4]">{workspaceDetail}</p></div>
+                <ChevronDown className="size-3.5 text-[#a8c6e4] group-data-[collapsible=icon]:hidden" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -86,8 +86,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </DropdownMenu>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset className="min-h-screen bg-[#f1f4f5]">
-        <header className="sticky top-0 z-20 flex h-[78px] items-center justify-between border-b border-[#dfe6e6] bg-[#f1f4f5]/90 px-4 backdrop-blur-md sm:px-7">
+      <SidebarInset className="min-h-screen bg-[#f5f9ff]">
+        <header className="sticky top-0 z-20 flex h-[78px] items-center justify-between border-b border-[#dce9f7] bg-[#f5f9ff]/90 px-4 backdrop-blur-md sm:px-7">
           <div className="flex min-w-0 items-center gap-3">
             <SidebarTrigger className="size-9 rounded-lg text-[#405052] hover:bg-white hover:text-[#111718]" aria-label="Abrir navegação"><Menu className="size-4" /></SidebarTrigger>
             <div className="hidden h-5 w-px bg-[#d9e0e0] sm:block" />
