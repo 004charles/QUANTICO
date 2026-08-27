@@ -20,7 +20,7 @@ export default function DataCenter() {
   const utils = trpc.useUtils();
   const importsQuery = trpc.data.listImports.useQuery();
   const importMutation = trpc.data.importFile.useMutation({
-    onSuccess: (result) => { setProfile({ fileName: result.fileName, profile: result.profile }); utils.data.listImports.invalidate(); toast.success("Fonte analisada e armazenada com segurança."); },
+    onSuccess: (result) => { setProfile({ fileName: result.fileName, profile: result.profile }); utils.data.listImports.invalidate(); toast.success(result.metricSnapshotsCreated ? `${result.metricSnapshotsCreated} período(s) de métrica foram preparados para análise.` : "Fonte analisada e armazenada com segurança."); },
     onError: (error) => toast.error(error.message),
   });
   const handleFile = async (file?: File) => {

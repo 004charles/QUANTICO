@@ -21,7 +21,7 @@ export type DatasetProfile = {
   columns: ProfileColumn[];
 };
 
-type Row = Record<string, unknown>;
+export type DatasetRow = Record<string, unknown>;
 
 const MAX_PROFILE_ROWS = 25_000;
 const supportedMimes = new Set([
@@ -68,7 +68,7 @@ function detectSuggestedMetrics(columns: ProfileColumn[]) {
   return Array.from(suggested).slice(0, 4);
 }
 
-export function profileRows(rows: Row[]): DatasetProfile {
+export function profileRows(rows: DatasetRow[]): DatasetProfile {
   const sampled = rows.slice(0, MAX_PROFILE_ROWS);
   const columnNames = Array.from(new Set(sampled.flatMap((row) => Object.keys(row))));
   const columns = columnNames.map((name) => {
@@ -90,23 +90,27 @@ export function profileRows(rows: Row[]): DatasetProfile {
   return { rowCount: rows.length, columnCount: columnNames.length, duplicateRowCount, missingValueCount, qualityScore, suggestedMetrics: detectSuggestedMetrics(columns), columns };
 }
 
-function rowsFromSheet(sheet: XLSX.WorkSheet): Row[] {
+function rowsFromSheet(sheet: XLSX.WorkSheet): DatasetRow[] {
   const matrix = XLSX.utils.sheet_to_json<unknown[]>(sheet, { header: 1, defval: null, raw: false });
   const headers = (matrix[0] || []).map((header, index) => String(header || `coluna_${index + 1}`).trim());
   return matrix.slice(1).filter((row) => row.some((value) => !isEmpty(value))).map((row) => Object.fromEntries(headers.map((header, index) => [header, row[index] ?? null])));
 }
 
-export function parseAndProfileFile(input: { fileName: string; contentType: string; data: Buffer }): DatasetProfile {
+export function parseDatasetRows(input: { fileName: string; contentType: string; data: Buffer }): DatasetRow[] {
   const extension = input.fileName.toLowerCase().split(".").pop();
   if (!supportedMimes.has(input.contentType) && !["csv", "json", "xlsx", "xls"].includes(extension || "")) throw new Error("O formato do ficheiro não é suportado. Envie CSV, XLSX ou JSON.");
   if (extension === "json" || input.contentType === "application/json") {
     const parsed = JSON.parse(input.data.toString("utf8")) as unknown;
     const rows = Array.isArray(parsed) ? parsed : [parsed];
     if (!rows.every((row) => row && typeof row === "object" && !Array.isArray(row))) throw new Error("O JSON deve conter um objeto ou uma lista de objetos.");
-    return profileRows(rows as Row[]);
+    return rows as DatasetRow[];
   }
   const workbook = XLSX.read(input.data, { type: "buffer", cellDates: true });
   const firstSheetName = workbook.SheetNames[0];
   if (!firstSheetName) throw new Error("O ficheiro não contém uma folha de dados.");
-  return profileRows(rowsFromSheet(workbook.Sheets[firstSheetName]));
+  return rowsFromSheet(workbook.Sheets[firstSheetName]);
+}
+
+export function parseAndProfileFile(input: { fileName: string; contentType: string; data: Buffer }): DatasetProfile {
+  return profileRows(parseDatasetRows(input));
 }

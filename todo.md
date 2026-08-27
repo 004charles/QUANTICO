@@ -15,7 +15,7 @@
 - [x] Implementar central de dados para CSV, XLSX e JSON
 - [x] Implementar perfilamento, score de qualidade, nulos, duplicidades e métricas sugeridas
 - [x] Implementar oportunidades de crescimento, previsões e detecção de anomalias
-- [ ] Implementar geração e distribuição operacional de relatórios executivos, financeiros e comerciais configuráveis
+- [x] Implementar geração e distribuição operacional de relatórios executivos, financeiros e comerciais configuráveis
 - [x] Criar testes unitários para segurança de queries, isolamento por tenant e principais APIs
 - [x] Executar verificação TypeScript, testes e revisão visual responsiva
 - [x] Salvar checkpoint final da primeira versão entregue
@@ -23,9 +23,11 @@
 - [x] Implementar dados reais de organização no shell executivo, com nome e contexto do tenant em vez de rótulo estático
 - [x] Revalidar visualmente o shell após integrar o logo real e o contexto organizacional funcional
 - [ ] Demonstrar sucesso do executor analítico com dados reais importados ou um dataset autorizado pela organização
-- [ ] Exibir estados explícitos de vazio e erro no dashboard, Sales e Customer Intelligence
-- [ ] Conectar os blocos restantes de Sales e Customer Intelligence a APIs por tenant
+- [x] Exibir estados explícitos de vazio e erro no dashboard, Sales e Customer Intelligence
+- [x] Conectar os blocos restantes de Sales e Customer Intelligence a APIs por tenant
 - [x] Adicionar testes das APIs principais de importação, relatórios, métricas e resumo executivo
 - [x] Renderizar visualizações no Ask Quantico com base em uma especificação estruturada de gráfico retornada pelo backend
 - [x] Suportar comparações analíticas entre períodos no fluxo do AI Business Analyst
 - [x] Cobrir a rota de IA em cenários de sucesso, bloqueio de segurança, ausência de dados e resposta com visualização
+- [x] Criar um ficheiro CSV sintético, rotulado para teste, com colunas reconhecidas pela importação
+- [x] Validar a importação ponta a ponta com o ficheiro sintético sem usar os dados para análise comercial real

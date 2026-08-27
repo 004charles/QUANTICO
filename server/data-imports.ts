@@ -1,7 +1,8 @@
 import { desc, eq } from "drizzle-orm";
-import { importedDatasets } from "../drizzle/schema";
+import { executiveMetricSnapshots, importedDatasets } from "../drizzle/schema";
 import { getDb } from "./db";
-import { parseAndProfileFile, type DatasetProfile } from "./data-profiler";
+import { parseDatasetRows, profileRows, type DatasetProfile } from "./data-profiler";
+import { extractMetricSnapshots } from "./metric-extraction";
 import { storagePut } from "./storage";
 
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -13,12 +14,15 @@ function safeFileName(fileName: string) {
 export async function importDataset(input: { organizationId: number; fileName: string; contentType: string; contentBase64: string }) {
   const data = Buffer.from(input.contentBase64, "base64");
   if (!data.length || data.length > MAX_FILE_BYTES) throw new Error("O ficheiro deve ter até 8 MB.");
-  const profile = parseAndProfileFile({ fileName: input.fileName, contentType: input.contentType, data });
+  const parsedRows = parseDatasetRows({ fileName: input.fileName, contentType: input.contentType, data });
+  const profile = profileRows(parsedRows);
+  const snapshots = extractMetricSnapshots(parsedRows);
   const stored = await storagePut(`organizations/${input.organizationId}/datasets/${safeFileName(input.fileName)}`, data, input.contentType);
   const db = await getDb();
   if (!db) throw new Error("A base de dados não está disponível para registrar a importação.");
   const [created] = await db.insert(importedDatasets).values({ organizationId: input.organizationId, fileName: input.fileName.slice(0, 255), fileKey: stored.key, contentType: input.contentType, rowCount: profile.rowCount, qualityScore: profile.qualityScore, profile }).$returningId();
-  return { id: created?.id, fileName: input.fileName, storageUrl: stored.url, profile };
+  if (snapshots.length) await db.insert(executiveMetricSnapshots).values(snapshots.map((snapshot) => ({ organizationId: input.organizationId, ...snapshot })));
+  return { id: created?.id, fileName: input.fileName, storageUrl: stored.url, profile, metricSnapshotsCreated: snapshots.length };
 }
 
 export async function listImportedDatasets(organizationId: number) {
