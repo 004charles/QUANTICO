@@ -82,4 +82,4 @@
 - [x] Cobrir a persistência, o último trigger e a idempotência diária de `alerts.evaluate` e `alerts.events`
 - [x] Validar todas as novas APIs, interações e experiências responsivas
 - [x] Disponibilizar a rota directa `/onboarding` para a jornada de configuração inicial
-- [ ] Publicar a evolução das cinco fases e sincronizar a versão final com o repositório GitHub
+- [x] Publicar a evolução das cinco fases e sincronizar a versão final com o repositório GitHub
