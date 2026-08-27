@@ -1,4 +1,5 @@
 const GROQ_API_URL = "https://api.groq.com/openai/v1";
+const GROQ_ANALYSIS_MODEL = "openai/gpt-oss-20b";
 
 export type GroqConnectionCheck = {
   connected: boolean;
@@ -64,7 +65,7 @@ export async function analyzeWithGroq(input: BusinessAnalysisInput): Promise<Bus
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({
-      model: "llama-3.3-70b-versatile",
+      model: GROQ_ANALYSIS_MODEL,
       temperature: 0.2,
       response_format: { type: "json_schema", json_schema: analysisSchema },
       messages: [
@@ -80,7 +81,10 @@ export async function analyzeWithGroq(input: BusinessAnalysisInput): Promise<Bus
     }),
   });
 
-  if (!response.ok) throw new Error(`A Groq respondeu com ${response.status}.`);
+  if (!response.ok) {
+    const detail = await response.text().catch(() => "");
+    throw new Error(`A Groq respondeu com ${response.status}${detail ? `: ${detail.slice(0, 400)}` : ""}`);
+  }
   const body = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
   const content = body.choices?.[0]?.message?.content;
   if (!content) throw new Error("A Groq não devolveu uma resposta utilizável.");

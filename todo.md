@@ -31,3 +31,6 @@
 - [x] Cobrir a rota de IA em cenários de sucesso, bloqueio de segurança, ausência de dados e resposta com visualização
 - [x] Criar um ficheiro CSV sintético, rotulado para teste, com colunas reconhecidas pela importação
 - [x] Validar a importação ponta a ponta com o ficheiro sintético sem usar os dados para análise comercial real
+- [x] Corrigir a falha do Ask Quantico ao concluir análises com métricas conectadas
+- [x] Validar o fluxo Ask Quantico com resposta, comparação e visualização após a correção
+- [x] Identificar e substituir o modelo Groq indisponível por um modelo suportado pela conta
