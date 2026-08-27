@@ -22,7 +22,7 @@
 - [x] Carregar e integrar de fato o logo fornecido ao projeto e substituir o fallback genérico quando aplicável
 - [x] Implementar dados reais de organização no shell executivo, com nome e contexto do tenant em vez de rótulo estático
 - [x] Revalidar visualmente o shell após integrar o logo real e o contexto organizacional funcional
-- [ ] Demonstrar sucesso do executor analítico com dados reais importados ou um dataset autorizado pela organização
+- [x] Demonstrar sucesso do executor analítico com dados reais importados ou um dataset autorizado pela organização
 - [x] Exibir estados explícitos de vazio e erro no dashboard, Sales e Customer Intelligence
 - [x] Conectar os blocos restantes de Sales e Customer Intelligence a APIs por tenant
 - [x] Adicionar testes das APIs principais de importação, relatórios, métricas e resumo executivo
