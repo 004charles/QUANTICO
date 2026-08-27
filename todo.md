@@ -52,3 +52,33 @@
 - [x] Atualizar os blocos e a hierarquia do Dashboard para a nova direção visual empresarial
 - [x] Atualizar o Ask Quantico e o componente de visualização para a nova identidade corporativa
 - [x] Atualizar os cartões e gráficos reutilizados para a nova linguagem visual
+- [x] Criar guia de identidade Quantico com marca provisória, cores, tipografia e padrões de interface
+- [x] Criar onboarding guiado para definir organização, setor, objetivos e primeiro ficheiro de dados
+- [x] Completar `docs/quantico-brand-guide.md` com tipografia explícita: famílias usadas, pesos, tamanhos/hierarquia e regras de aplicação da marca provisória.
+- [x] Integrar no onboarding um passo funcional para escolher ou enviar o primeiro ficheiro de dados, com estados de sucesso e erro.
+- [x] Adicionar testes da rota/procedures de onboarding e verificação do fluxo de configuração persistido por organização.
+- [x] Criar interface de conectores para bases de dados, Google Sheets e APIs com credenciais protegidas
+- [x] Criar mapeamento de campos de negócio para receita, vendas, clientes, produtos e datas
+- [x] Implementar conectores realmente funcionais para PostgreSQL/MySQL, Google Sheets e REST API com teste de ligação e estados seguros de sucesso/erro
+- [x] Cobrir os conectores com testes de tenant, ausência de credenciais e falhas de ligação
+- [x] Corrigir o modelo de mapeamento para distinguir vendas de identificadores de pedido e recalcular a contagem com segurança
+- [x] Usar o campo produto mapeado na análise de desempenho de produtos
+- [x] Cobrir ausência de credenciais, falhas de ligação, transições de estado e bloqueio entre tenants nos testes reais de conectores
+- [x] Criar dashboards por área para direção, vendas, clientes e operações
+- [x] Criar preferências de área e regras de acesso à informação por utilizador
+- [x] Criar dashboard operacional com qualidade, saúde das fontes e cadência dos dados
+- [x] Evoluir as áreas de direção, vendas e clientes em dashboards próprios, não apenas ligações do hub
+- [x] Validar as novas rotas e a aplicação das áreas visíveis na experiência do utilizador
+- [x] Criar central de ações comerciais com campanhas de reativação e acompanhamento de resultados
+- [x] Criar alertas configuráveis para anomalias, metas e clientes em risco
+- [x] Implementar gestão de cadências de relatórios recorrentes, incluindo pausar e retomar
+- [x] Registar responsável, progresso, resultado e follow-ups para acompanhar impacto de ações comerciais
+- [x] Ligar ações de reactivação a sinais agregados de clientes em risco e comparar potencial estimado com resultado realizado
+- [x] Implementar avaliação determinística de alertas, histórico de disparos e actualização do último trigger por regra
+- [x] Exibir alertas accionados com estados de vazio, erro e sucesso, e cobrir o triggering por testes
+- [x] Exibir o histórico de follow-ups por ação e cobrir os procedimentos de resultado e follow-up
+- [x] Registar a origem do sinal agregado em ações de reactivação e apresentar esta ligação por ação
+- [x] Completar os estados de carregamento, erro e sucesso dos alertas accionados
+- [x] Cobrir a persistência, o último trigger e a idempotência diária de `alerts.evaluate` e `alerts.events`
+- [x] Validar todas as novas APIs, interações e experiências responsivas
+- [ ] Publicar a evolução das cinco fases e sincronizar a versão final com o repositório GitHub

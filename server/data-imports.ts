@@ -1,8 +1,8 @@
 import { desc, eq } from "drizzle-orm";
-import { executiveMetricSnapshots, importedDatasets } from "../drizzle/schema";
+import { executiveMetricSnapshots, importedDatasets, productMetricSnapshots } from "../drizzle/schema";
 import { getDb } from "./db";
 import { parseDatasetRows, profileRows, type DatasetProfile } from "./data-profiler";
-import { extractMetricSnapshots } from "./metric-extraction";
+import { extractMetricSnapshots, extractProductMetrics } from "./metric-extraction";
 import { storagePut } from "./storage";
 
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -17,11 +17,13 @@ export async function importDataset(input: { organizationId: number; fileName: s
   const parsedRows = parseDatasetRows({ fileName: input.fileName, contentType: input.contentType, data });
   const profile = profileRows(parsedRows);
   const snapshots = extractMetricSnapshots(parsedRows);
+  const productMetrics = extractProductMetrics(parsedRows);
   const stored = await storagePut(`organizations/${input.organizationId}/datasets/${safeFileName(input.fileName)}`, data, input.contentType);
   const db = await getDb();
   if (!db) throw new Error("A base de dados não está disponível para registrar a importação.");
   const [created] = await db.insert(importedDatasets).values({ organizationId: input.organizationId, fileName: input.fileName.slice(0, 255), fileKey: stored.key, contentType: input.contentType, rowCount: profile.rowCount, qualityScore: profile.qualityScore, profile }).$returningId();
-  if (snapshots.length) await db.insert(executiveMetricSnapshots).values(snapshots.map((snapshot) => ({ organizationId: input.organizationId, ...snapshot })));
+  if (snapshots.length) await db.insert(executiveMetricSnapshots).values(snapshots.map((snapshot) => ({ organizationId: input.organizationId, sourceDatasetId: created.id, ...snapshot })));
+  if (productMetrics.length) await db.insert(productMetricSnapshots).values(productMetrics.map((metric) => ({ organizationId: input.organizationId, sourceDatasetId: created.id, ...metric })));
   return { id: created?.id, fileName: input.fileName, storageUrl: stored.url, profile, metricSnapshotsCreated: snapshots.length };
 }
 

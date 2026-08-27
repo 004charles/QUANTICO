@@ -40,6 +40,12 @@ export async function persistReportSchedule(reportId: number, organizationId: nu
   await db.update(reports).set({ scheduleCronTaskUid: taskUid }).where(and(eq(reports.id, reportId), eq(reports.organizationId, organizationId)));
 }
 
+export async function setReportScheduleActive(reportId: number, organizationId: number, isActive: boolean) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível para actualizar o agendamento.");
+  await db.update(reports).set({ isActive: isActive ? 1 : 0 }).where(and(eq(reports.id, reportId), eq(reports.organizationId, organizationId)));
+}
+
 export async function markReportGenerated(reportId: number) {
   const db = await getDb();
   if (!db) throw new Error("A base de dados não está disponível para atualizar o relatório.");

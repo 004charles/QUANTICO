@@ -3,12 +3,12 @@ import type { TrpcContext } from "./_core/context";
 
 const mocks = vi.hoisted(() => ({
   organization: { id: 7, name: "Organização de teste", industry: "comércio", currency: "AOA", membershipRole: "owner" as const, isDemo: false },
-  createReport: vi.fn(), listReports: vi.fn(), getReportForOrganization: vi.fn(), persistReportSchedule: vi.fn(), generateReportArtifact: vi.fn(), listReportArtifacts: vi.fn(), createHeartbeatJob: vi.fn(),
+  createReport: vi.fn(), listReports: vi.fn(), getReportForOrganization: vi.fn(), persistReportSchedule: vi.fn(), setReportScheduleActive: vi.fn(), generateReportArtifact: vi.fn(), listReportArtifacts: vi.fn(), createHeartbeatJob: vi.fn(), updateHeartbeatJob: vi.fn(),
 }));
 
 vi.mock("./db", () => ({ getCurrentOrganization: vi.fn(async () => mocks.organization), writeAnalyticalQueryAudit: vi.fn() }));
-vi.mock("./reports", () => ({ createReport: mocks.createReport, listReports: mocks.listReports, getReportForOrganization: mocks.getReportForOrganization, persistReportSchedule: mocks.persistReportSchedule, generateReportArtifact: mocks.generateReportArtifact, listReportArtifacts: mocks.listReportArtifacts }));
-vi.mock("./_core/heartbeat", () => ({ createHeartbeatJob: mocks.createHeartbeatJob }));
+vi.mock("./reports", () => ({ createReport: mocks.createReport, listReports: mocks.listReports, getReportForOrganization: mocks.getReportForOrganization, persistReportSchedule: mocks.persistReportSchedule, setReportScheduleActive: mocks.setReportScheduleActive, generateReportArtifact: mocks.generateReportArtifact, listReportArtifacts: mocks.listReportArtifacts }));
+vi.mock("./_core/heartbeat", () => ({ createHeartbeatJob: mocks.createHeartbeatJob, updateHeartbeatJob: mocks.updateHeartbeatJob }));
 
 import { appRouter } from "./routers";
 
@@ -52,5 +52,15 @@ describe("reports router", () => {
     expect(result.taskUid).toBe("cron-42");
     expect(mocks.createHeartbeatJob).toHaveBeenCalledWith(expect.objectContaining({ path: "/api/scheduled/generate-report", cron: "0 0 7 1 * *" }), "session");
     expect(mocks.persistReportSchedule).toHaveBeenCalledWith(9, 7, "cron-42");
+  });
+
+  it("pauses and resumes a schedule using the report task uid scoped to the organization", async () => {
+    mocks.getReportForOrganization.mockResolvedValue({ id: 9, organizationId: 7, name: "Visão mensal", category: "executive", cadence: "monthly", scheduleCronTaskUid: "cron-42", isActive: 1 });
+    mocks.updateHeartbeatJob.mockResolvedValue({ nextExecutionAt: null });
+    await caller().reports.setScheduleActive({ reportId: 9, isActive: false });
+    expect(mocks.updateHeartbeatJob).toHaveBeenCalledWith("cron-42", { enable: false }, "session");
+    expect(mocks.setReportScheduleActive).toHaveBeenCalledWith(9, 7, false);
+    await caller().reports.setScheduleActive({ reportId: 9, isActive: true });
+    expect(mocks.updateHeartbeatJob).toHaveBeenLastCalledWith("cron-42", { enable: true }, "session");
   });
 });

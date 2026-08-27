@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { BarChart3, Bell, Bot, Building2, ChevronDown, CircleGauge, Database, FileText, Gauge, LayoutDashboard, LogOut, Menu, Settings2, Sparkles, Target, UsersRound } from "lucide-react";
+import { BarChart3, Bell, Bot, Building2, ChevronDown, CircleGauge, Database, FileText, Gauge, LayoutDashboard, Link2, LogOut, Menu, Megaphone, Settings2, ShieldCheck, Sparkles, Target, UsersRound } from "lucide-react";
 import { useLocation } from "wouter";
 
 const primaryItems = [
@@ -20,7 +20,11 @@ const primaryItems = [
 
 const managementItems = [
   { icon: Database, label: "Dados e importações", path: "/data" },
+  { icon: Link2, label: "Conectores e campos", path: "/connectors" },
+  { icon: BarChart3, label: "Áreas de análise", path: "/areas" },
+  { icon: Megaphone, label: "Ações e alertas", path: "/actions" },
   { icon: FileText, label: "Relatórios", path: "/reports" },
+  { icon: ShieldCheck, label: "Equipa e acessos", path: "/access" },
   { icon: Settings2, label: "Configurações", path: "/settings" },
 ];
 

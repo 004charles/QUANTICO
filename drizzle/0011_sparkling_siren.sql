@@ -1,0 +1,1 @@
+ALTER TABLE `growth_actions` ADD `sourceSignal` varchar(200);

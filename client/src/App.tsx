@@ -13,6 +13,12 @@ import NotFound from "./pages/NotFound";
 import DataCenter from "./pages/DataCenter";
 import Reports from "./pages/Reports";
 import SalesIntelligence from "./pages/SalesIntelligence";
+import WorkspaceSetup from "./pages/WorkspaceSetup";
+import DataConnectors from "./pages/DataConnectors";
+import AnalyticsAreas from "./pages/AnalyticsAreas";
+import WorkspaceAccess from "./pages/WorkspaceAccess";
+import OperationsDashboard from "./pages/OperationsDashboard";
+import ActionCenter from "./pages/ActionCenter";
 import { Route, Switch } from "wouter";
 
 function Module({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
@@ -30,8 +36,13 @@ function Router() {
         <Route path="/growth" component={GrowthOpportunities} />
         <Route path="/forecast" component={Forecasting} />
         <Route path="/data" component={DataCenter} />
+        <Route path="/connectors" component={DataConnectors} />
+        <Route path="/areas" component={AnalyticsAreas} />
+        <Route path="/operations" component={OperationsDashboard} />
+        <Route path="/actions" component={ActionCenter} />
+        <Route path="/access" component={WorkspaceAccess} />
         <Route path="/reports" component={Reports} />
-        <Route path="/settings"><Module eyebrow="Configurações" title="Governe a inteligência da sua organização." description="Administre organização, utilizadores, permissões, fontes de dados e políticas de acesso em uma única área." /></Route>
+        <Route path="/settings" component={WorkspaceSetup} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
