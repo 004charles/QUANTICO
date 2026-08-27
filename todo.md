@@ -45,3 +45,10 @@
 - [x] Validar a experiência empresarial em desktop e mobile após o redesenho
 - [x] Enviar ao repositório GitHub 004charles/QUANTICO as alterações do redesenho corporativo posterior ao commit f8ab3bd
 - [x] Confirmar que github/main contém o commit mais recente e que o diretório de trabalho está limpo
+- [x] Criar uma direção visual original da Quantico com barra superior azul institucional e navegação mais compacta
+- [x] Refinar superfícies, botões, tabelas e painéis para maior clareza e acabamento corporativo
+- [x] Aplicar explicitamente a nova direção visual ao dashboard, à conversa e às visualizações de dados
+- [ ] Validar a atualização em desktop e mobile e sincronizar a versão final com GitHub
+- [x] Atualizar os blocos e a hierarquia do Dashboard para a nova direção visual empresarial
+- [x] Atualizar o Ask Quantico e o componente de visualização para a nova identidade corporativa
+- [x] Atualizar os cartões e gráficos reutilizados para a nova linguagem visual

@@ -20,13 +20,13 @@ const accents = {
 
 export function MetricCard({ label, value, change, detail, positive = true, icon: Icon, accent = "blue" }: MetricCardProps) {
   return (
-    <article className="quantico-card group relative overflow-hidden p-5">
+    <article className="quantico-card group relative overflow-hidden border-t-2 border-t-[#dceafa] p-5 transition-colors hover:border-t-[#0f6cbd]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-medium text-[#5d6875]">{label}</p>
+          <p className="text-xs font-medium text-[#5b6d7e]">{label}</p>
           <p className="mt-3 text-[26px] font-bold tracking-[-0.05em] text-[#242424] sm:text-[29px]">{value}</p>
         </div>
-        <div className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${accents[accent]}`}>
+        <div className={`flex size-9 shrink-0 items-center justify-center rounded-md ${accents[accent]}`}>
           <Icon className="size-[18px]" strokeWidth={1.8} />
         </div>
       </div>

@@ -9,9 +9,9 @@ import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 
 const chartTooltipStyle = {
-  borderRadius: "14px",
-  border: "1px solid #e1e8e8",
-  boxShadow: "0 12px 24px rgba(24, 35, 35, 0.08)",
+  borderRadius: "6px",
+  border: "1px solid #cad9e8",
+  boxShadow: "0 4px 14px rgba(15, 71, 122, 0.12)",
   fontSize: "12px",
 };
 
@@ -83,7 +83,7 @@ export default function Dashboard() {
       <MetricConnectionNotice state={revenueQuery.data?.state} isLoading={revenueQuery.isLoading} isError={revenueQuery.isError} />
 
       <section className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(310px,0.8fr)]">
-        <article className="quantico-card p-5 sm:p-6">
+        <article className="quantico-card border-t-2 border-t-[#0f6cbd] p-5 sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-semibold text-[#54718e]">Evolução da receita por mês</p>
@@ -92,12 +92,13 @@ export default function Dashboard() {
                 <span className="mb-1 inline-flex items-center gap-0.5 text-xs font-bold text-[#1670b8]"><TrendingUp className="size-3.5" />18,6%</span>
               </div>
             </div>
-            <div className="rounded-xl bg-[#eaf4ff] px-3 py-2 text-right">
+            <div className="rounded-md bg-[#edf5fd] px-3 py-2 text-right">
               <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#3b78b1]">Próximo mês estimado</p>
               <p className="mt-0.5 text-sm font-extrabold tracking-[-0.04em] text-[#125f9f]">53,0M Kz</p>
             </div>
           </div>
-          <div className="mt-6 h-[245px]">
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[11px] text-[#5d7083]"><span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-full bg-[#0f69b3]" />Receita registada</span><span className="inline-flex items-center gap-1.5"><span className="w-3 border-t border-dashed border-[#9eabb7]" />Meta mensal</span><span>Valores em milhões de Kz</span></div>
+          <div className="mt-4 h-[245px]" aria-label="Gráfico de evolução da receita mensal">
             <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={220}>
               <AreaChart data={revenueChartData} margin={{ top: 6, right: 0, left: -20, bottom: 0 }}>
                 <defs>

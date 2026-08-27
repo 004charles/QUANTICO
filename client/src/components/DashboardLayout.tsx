@@ -26,8 +26,8 @@ const managementItems = [
 
 function NavSection({ title, items, location, setLocation }: { title?: string; items: typeof primaryItems; location: string; setLocation: (path: string) => void }) {
   return (
-    <SidebarMenu className="gap-1 px-3">
-      {title ? <p className="px-2 pb-1 pt-4 text-[9px] font-bold uppercase tracking-[0.16em] text-[#718083] group-data-[collapsible=icon]:hidden">{title}</p> : null}
+    <SidebarMenu className="gap-0.5 px-2.5">
+      {title ? <p className="px-2.5 pb-1.5 pt-5 text-[10px] font-semibold uppercase tracking-[0.09em] text-[#607080] group-data-[collapsible=icon]:hidden">{title}</p> : null}
       {items.map((item) => {
         const active = location === item.path;
         return (
@@ -36,9 +36,9 @@ function NavSection({ title, items, location, setLocation }: { title?: string; i
               isActive={active}
               onClick={() => setLocation(item.path)}
               tooltip={item.label}
-              className={`h-10 rounded-md px-2.5 text-[#d0d7de] transition-all hover:bg-white/10 hover:text-white data-[active=true]:bg-[#0b62b4] data-[active=true]:font-semibold data-[active=true]:text-white ${item.highlight && !active ? "bg-white/10 text-white" : ""}`}
+              className={`h-9 rounded-md px-2.5 text-[#364656] transition-all hover:bg-[#f2f7fc] hover:text-[#0b62b4] data-[active=true]:bg-[#eaf3fc] data-[active=true]:font-semibold data-[active=true]:text-[#0b62b4] ${item.highlight && !active ? "text-[#0b62b4]" : ""}`}
             >
-              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#9fc5eb]" : ""}`} strokeWidth={active ? 2.2 : 1.9} />
+              <item.icon className={`size-4 ${item.highlight && !active ? "text-[#0b62b4]" : ""}`} strokeWidth={active ? 2.1 : 1.8} />
               <span className="truncate text-[13px]">{item.label}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -56,26 +56,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const organization = organizationQuery.data;
   const displayName = user?.name || "Modo demonstração";
   const initials = displayName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
-  const workspaceName = organization?.name || "A carregar workspace";
+  const workspaceName = organization?.name || "Quantico Intelligence";
   const workspaceDetail = organization?.isDemo ? "Dados de demonstração" : `${organization?.industry || "Organização"} · ${organization?.membershipRole || "membro"}`;
 
   return (
     <SidebarProvider defaultOpen={!isMobile}>
-      <Sidebar collapsible="icon" className="border-0 bg-[#252b32] text-[#dcecff]">
-        <SidebarHeader className="h-[64px] justify-center border-b border-white/15 px-3">
+      <Sidebar collapsible="icon" className="border-r border-[#e1e7ed] bg-white text-[#263746]">
+        <SidebarHeader className="h-[52px] justify-center border-b border-[#0a5da9] bg-[#0f6cbd] px-3">
           <QuanticoBrand className="px-1 text-white" />
         </SidebarHeader>
-        <SidebarContent className="py-3">
+        <SidebarContent className="bg-white py-3">
           <NavSection items={primaryItems} location={location} setLocation={setLocation} />
           <NavSection title="Gestão" items={managementItems} location={location} setLocation={setLocation} />
         </SidebarContent>
-        <SidebarFooter className="border-t border-white/15 p-3">
+        <SidebarFooter className="border-t border-[#e1e7ed] bg-white p-2.5">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex w-full items-center gap-2.5 rounded-xl p-1.5 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9dc5ee] group-data-[collapsible=icon]:justify-center">
-                <Avatar className="size-8 shrink-0 border border-white/15"><AvatarFallback className="bg-[#dceeff] text-[10px] font-bold text-[#0f5fa8]">{initials}</AvatarFallback></Avatar>
-                <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold text-white">{displayName}</p><p className="mt-0.5 truncate text-[10px] text-[#a8c6e4]">{workspaceDetail}</p></div>
-                <ChevronDown className="size-3.5 text-[#a8c6e4] group-data-[collapsible=icon]:hidden" />
+              <button className="flex w-full items-center gap-2.5 rounded-md p-1.5 text-left transition-colors hover:bg-[#f2f7fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#66a8dc] group-data-[collapsible=icon]:justify-center">
+                <Avatar className="size-8 shrink-0"><AvatarFallback className="bg-[#eaf3fc] text-[10px] font-bold text-[#0b62b4]">{initials}</AvatarFallback></Avatar>
+                <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold text-[#273847]">{displayName}</p><p className="mt-0.5 truncate text-[10px] text-[#647687]">{workspaceDetail}</p></div>
+                <ChevronDown className="size-3.5 text-[#63788c] group-data-[collapsible=icon]:hidden" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -86,17 +86,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </DropdownMenu>
         </SidebarFooter>
       </Sidebar>
-      <SidebarInset className="min-h-screen bg-[#f8f9fa]">
-        <header className="sticky top-0 z-20 flex h-[64px] items-center justify-between border-b border-[#e2e6ea] bg-white/95 px-4 backdrop-blur-md sm:px-7">
+      <SidebarInset className="min-h-screen bg-[#f5f7f9]">
+        <header className="sticky top-0 z-20 flex h-[52px] items-center justify-between border-b border-[#0a5da9] bg-[#0f6cbd] px-4 shadow-sm sm:px-7">
           <div className="flex min-w-0 items-center gap-3">
-            <SidebarTrigger className="size-9 rounded-lg text-[#405052] hover:bg-white hover:text-[#111718]" aria-label="Abrir navegação"><Menu className="size-4" /></SidebarTrigger>
-            <div className="hidden h-5 w-px bg-[#d9e0e0] sm:block" />
-            <button onClick={() => setLocation("/settings")} className="hidden min-w-0 items-center gap-2 sm:flex"><span className="max-w-[220px] truncate text-sm font-bold tracking-[-0.04em] text-[#1d292a]">{workspaceName}</span><ChevronDown className="size-3.5 shrink-0 text-[#7f8e90]" /></button>
-            {isMobile ? <QuanticoBrand compact className="text-[#172122]" /> : null}
+            <SidebarTrigger className="size-8 rounded-md text-white hover:bg-white/15 hover:text-white" aria-label="Abrir navegação"><Menu className="size-4" /></SidebarTrigger>
+            <div className="hidden h-5 w-px bg-white/25 sm:block" />
+            <button onClick={() => setLocation("/settings")} className="hidden min-w-0 items-center gap-2 sm:flex"><span className="max-w-[260px] truncate text-sm font-semibold text-white">{workspaceName}</span><ChevronDown className="size-3.5 shrink-0 text-white/75" /></button>
+            {isMobile ? <QuanticoBrand compact className="bg-white/15 text-white" /> : null}
           </div>
-          <div className="flex items-center gap-2.5"><span className="hidden rounded-md border border-[#e1e5e9] bg-[#f7f9fb] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#637181] lg:inline-flex">Área de trabalho</span><button className="relative flex size-9 items-center justify-center rounded-md border border-[#dce3e9] bg-white text-[#526163] transition-colors hover:bg-[#f2f7fc] hover:text-[#0b62b4]" aria-label="Notificações"><Bell className="size-4" /><span className="absolute right-2 top-2 size-1.5 rounded-full bg-[#0b62b4]" /></button></div>
+          <div className="flex items-center gap-2.5"><span className="hidden rounded-sm border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-white/95 lg:inline-flex">Área de trabalho</span><button className="relative flex size-8 items-center justify-center rounded-md text-white transition-colors hover:bg-white/15" aria-label="Notificações"><Bell className="size-4" /><span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#9ed0ff] ring-2 ring-[#0f6cbd]" /></button></div>
         </header>
-        <main className="mx-auto w-full max-w-[1660px] flex-1 px-4 py-6 sm:px-7 sm:py-8">{children}</main>
+        <main className="mx-auto w-full max-w-[1660px] flex-1 px-4 py-6 sm:px-7 sm:py-7">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

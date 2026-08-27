@@ -32,13 +32,13 @@
 }
 
 :root {
-  --background: oklch(0.975 0.002 260);
-  --foreground: oklch(0.24 0.012 260);
+  --background: oklch(0.973 0.004 250);
+  --foreground: oklch(0.23 0.018 250);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.22 0.04 255);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.04 255);
-  --primary: oklch(0.48 0.14 250);
+  --primary: oklch(0.5 0.15 250);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.95 0.018 250);
   --secondary-foreground: oklch(0.25 0.07 250);
@@ -55,13 +55,13 @@
 
 * { border-color: var(--border); }
 
-html { background: #f8f9fa; }
+html { background: #f5f7f9; }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #f8f9fa;
-  color: #242424;
+  background: #f5f7f9;
+  color: #1f2933;
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -72,10 +72,10 @@ button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 
 .quantico-card {
-  border: 1px solid #e2e6ea;
-  border-radius: 10px;
+  border: 1px solid #dde4eb;
+  border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 2px rgba(15, 38, 63, 0.045);
 }
 
 .quantico-control {
@@ -84,16 +84,19 @@ button:disabled { cursor: not-allowed; }
   color: #424242;
   transition: background-color 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.quantico-control:hover { border-color: #9fbfe1; background: #f7fbff; }
-.quantico-link { color: #0b62b4; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
-.quantico-link:hover { color: #004f9e; }
-.quantico-dark-button { background: #0b62b4; color: white; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
-.quantico-dark-button:hover { background: #004f9e; }
+.quantico-control:hover { border-color: #8ab9e4; background: #f4f9ff; }
+.quantico-link { color: #0f6cbd; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.quantico-link:hover { color: #0759a0; }
+.quantico-dark-button { background: #0f6cbd; color: white; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.quantico-dark-button:hover { background: #0759a0; }
 .quantico-cta { transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
 .quantico-cta:hover { background: #d9ebff; }
 .quantico-cta:active, .quantico-dark-button:active { transform: scale(0.97); }
 
 @media (prefers-reduced-motion: no-preference) {
   .quantico-card { transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1); }
-  .quantico-card:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07); }
+  .quantico-card:hover { box-shadow: 0 4px 14px rgba(15, 38, 63, 0.07); }
 }
+
+.quantico-mark { background: linear-gradient(145deg, #ffffff 0%, #dceeff 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.6); }
+.quantico-mark-core { color: #0f6cbd; font-size: 15px; font-weight: 800; letter-spacing: -.08em; line-height: 1; }
