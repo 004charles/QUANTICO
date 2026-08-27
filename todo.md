@@ -43,5 +43,5 @@
 - [x] Redesenhar o shell de navegação, superfícies, botões, cartões e tipografia com padrão empresarial consistente
 - [x] Refinar dashboard e gráficos para uma apresentação executiva mais discreta e hierárquica
 - [x] Validar a experiência empresarial em desktop e mobile após o redesenho
-- [ ] Enviar ao repositório GitHub 004charles/QUANTICO as alterações do redesenho corporativo posterior ao commit f8ab3bd
-- [ ] Confirmar que github/main contém o commit mais recente e que o diretório de trabalho está limpo
+- [x] Enviar ao repositório GitHub 004charles/QUANTICO as alterações do redesenho corporativo posterior ao commit f8ab3bd
+- [x] Confirmar que github/main contém o commit mais recente e que o diretório de trabalho está limpo
